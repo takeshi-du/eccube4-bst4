@@ -1,0 +1,28 @@
+<section class="ec-newItemRole">
+    <div class="ec-secHeading--tandem">
+        <span class="ec-secHeading__en">{{ 'front.block.new_item.title__en'|trans }}</span>
+        <span class="ec-secHeading__line"></span>
+        <span class="ec-secHeading__ja">{{ 'front.block.new_item.title__ja'|trans }}</span>
+    </div>
+    <div class="row">
+        {% for i in 1..4 %}
+            <div class="col-6 col-lg-3">
+                <a href="{{ url('product_detail', {'id': '1'}) }}">
+                    <img class="img-fluid" src="{{ asset('cube-1.png', 'save_image') }}">
+                    <p class="ec-newItemRole__listItemTitle">{{ 'front.block.new_item.item_1_name'|trans }}</p>
+                    <p class="ec-newItemRole__listItemPrice">{{ 'front.block.new_item.item_1_price'|trans }}</p>
+                </a>
+            </div>
+            <div class="col-6 col-lg-3">
+                <a href="{{ url('product_detail', {'id': '2'}) }}">
+                    <img class="img-fluid" src="{{ asset('sand-1.png', 'save_image') }}">
+                    <p class="ec-newItemRole__listItemTitle">{{ 'front.block.new_item.item_2_name'|trans }}</p>
+                    <p class="ec-newItemRole__listItemPrice">{{ 'front.block.new_item.item_2_price'|trans }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+        <a class="ec-inlineBtn--top" href="{{ url('product_list') }}">{{ 'front.block.new_item.more'|trans }}</a>
+    </div>
+</section>

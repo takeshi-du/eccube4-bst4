@@ -1,0 +1,12 @@
+{
+  "name": "eccube4-bst4",
+  "version": "1.0.0",
+  "description": "eccube4 bootstrap4 template",
+  "main": "index.js",
+  "scripts": {
+    "install": "composer create-project ec-cube/ec-cube ec-cube \"4.0.x-dev\" --keep-vcs",
+    "server": "cd ec-cube && bin/console server:run"
+  },
+  "author": "",
+  "license": "ISC"
+}
