@@ -8,17 +8,17 @@
         <div class="row">
             {% for i in 1..3 %}
             <div class="col-6 col-lg-2">
-                <a href="{{ url('product_detail', {'id': '1'}) }}">
+                <a class="card-item" href="{{ url('product_detail', {'id': '1'}) }}">
                     <img class="img-fluid" src="{{ asset('cube-1.png', 'save_image') }}">
-                    <p class="ec-newItemRole__listItemTitle">{{ 'front.block.new_item.item_1_name'|trans }}</p>
-                    <p class="ec-newItemRole__listItemPrice">{{ 'front.block.new_item.item_1_price'|trans }}</p>
+                    <p class="title">{{ 'front.block.new_item.item_1_name'|trans }}</p>
+                    <p class="price">{{ 'front.block.new_item.item_1_price'|trans }}</p>
                 </a>
             </div>
             <div class="col-6 col-lg-2">
-                <a href="{{ url('product_detail', {'id': '2'}) }}">
+                <a class="card-item" href="{{ url('product_detail', {'id': '2'}) }}">
                     <img class="img-fluid" src="{{ asset('sand-1.png', 'save_image') }}">
-                    <p class="ec-newItemRole__listItemTitle">{{ 'front.block.new_item.item_2_name'|trans }}</p>
-                    <p class="ec-newItemRole__listItemPrice">{{ 'front.block.new_item.item_2_price'|trans }}</p>
+                    <p class="title">{{ 'front.block.new_item.item_2_name'|trans }}</p>
+                    <p class="price">{{ 'front.block.new_item.item_2_price'|trans }}</p>
                 </a>
             </div>
             {% endfor %}

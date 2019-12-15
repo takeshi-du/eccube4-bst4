@@ -13,9 +13,8 @@ file that was distributed with this source code.
 {% set totalQuantity = get_carts_total_quantity() %}
 
 <a class="nav-link" href="{{ url('cart') }}">
-    <i class="fas fa-shopping-cart mr-2">
-        <span class="ec-cartNavi__badge">{{ totalQuantity|number_format }}</span>
-    </i>
+    <i data-feather="shopping-cart"></i>
+    <span class="ec-cartNavi__badge">{{ totalQuantity|number_format }}</span>
 </a>
 
 {# bst4テンプレート用、デフォルトに戻す場合は上記のコードを削除して、下記のコメントアウトを外してください。 #}

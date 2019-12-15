@@ -9,8 +9,8 @@
     <ul class="dropdown-menu">
       {% for ChildCategory in Category.children %}
         <li class="dropdown-item dropdown-submenu">
-          <a href="{{ url('product_list') }}?category_id={{ Category.id }}">
-            {{ Category.name }}
+          <a href="{{ url('product_list') }}?category_id={{ ChildCategory.id }}">
+            {{ ChildCategory.name }}
           </a>
           {{ tree(ChildCategory) }}
         </li>
@@ -22,37 +22,8 @@
 {# @see https://github.com/bolt/bolt/pull/2388 #}
 {% from _self import tree %}
 
-<style>
-.navbar-light .navbar-nav .nav-link {
-  color: #222;
-  font-size: 14px;
-}
-.dropdown-item a {
-  color: #212529;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu .dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -1px;
-}
-.dropdown:hover>.dropdown-menu,
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-@media (max-width: 991.98px) {
-  .dropdown-menu {
-    display: block;
-    background-color: transparent;
-    border: none;
-  }
-}
-</style>
-
 <div class="header">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" href="{{ url('homepage') }}">
         {{ BaseInfo.shop_name }}
@@ -62,75 +33,76 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="{{ url('homepage') }}">トップ</a>
           </li>
           {% for Category in Categories %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="{{ url('product_list') }}?category_id={{ Category.id }}">
                 {{ Category.name }}
+                <i data-feather="chevron-down"></i>
               </a>
               {{ tree(Category) }}
             </li>
           {% endfor %}
-          {% if is_granted('ROLE_USER') %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('mypage') }}">
-              <i class="fas fa-user fa-fw"></i>
-              <span>{{ 'front.block.login.mypage'|trans }}</span>
-            </a>
-          </li>
-          {% if BaseInfo.option_favorite_product %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('mypage_favorite') }}">
-                <i class="fas fa-heart fa-fw"></i>
-                <span>{{ 'front.block.login.favorite'|trans }}</span>
-              </a>
-            </li>
-          {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('logout') }}">
-              <i class="fas fa-lock fa-fw"></i>
-              <span>{{ 'front.block.login.logout'|trans }}</span>
-            </a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('entry') }}">
-              <i class="fas fa-user fa-fw"></i>
-              <span>{{ 'front.block.login.customer_registration'|trans }}</span>
-            </a>
-          </li>
-          {% if BaseInfo.option_favorite_product %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('mypage_favorite') }}">
-                <i class="fas fa-heart fa-fw"></i>
-                <span>{{ 'front.block.login.favorite'|trans }}</span>
-              </a>
-            </li>
-          {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('mypage_login') }}">
-              <i class="fas fa-lock fa-fw"></i>
-              <span>{{ 'front.block.login.login'|trans }}</span>
-            </a>
-          </li>
-          {% endif %}
           <li class="nav-item dropdown">
-            <div class="nav-link dropdown-toggle"><i class="fa fa-search"></i></div>
+            <div class="nav-link dropdown-toggle d-none d-lg-block"><i data-feather="search"></i></div>
             <div class="dropdown-menu dropdown-menu-right">
               <form method="get" class="form-inline my-2 my-lg-0" action="{{ path('product_list') }}">
                 <div class="input-group">
                   {# search_product.twigを呼び出し #}
                   {{ render(controller('Eccube\\Controller\\Block\\SearchProductController::index')) }}
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                    <i class="fa fa-search"></i>
+                  <button class="btn btn-outline-success" type="submit">
+                    <i data-feather="search"></i>
                   </button>
                 </div>
               </form>
             </div>
           </li>
+          {% if is_granted('ROLE_USER') %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('mypage') }}">
+              <i data-feather="user"></i>
+              <span class="d-lg-none">{{ 'front.block.login.mypage'|trans }}</span>
+            </a>
+          </li>
+          {% if BaseInfo.option_favorite_product %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('mypage_favorite') }}">
+                <i data-feather="heart"></i>
+                <span class="d-lg-none">{{ 'front.block.login.favorite'|trans }}</span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('logout') }}">
+              <i data-feather="lock"></i>
+              <span class="d-lg-none">{{ 'front.block.login.logout'|trans }}</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('entry') }}">
+              <i data-feather="user"></i>
+              <span class="d-lg-none">{{ 'front.block.login.customer_registration'|trans }}</span>
+            </a>
+          </li>
+          {% if BaseInfo.option_favorite_product %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('mypage_favorite') }}">
+                <i data-feather="heart"></i>
+                <span class="d-lg-none">{{ 'front.block.login.favorite'|trans }}</span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('mypage_login') }}">
+              <i data-feather="lock"></i>
+              <span class="d-lg-none">{{ 'front.block.login.login'|trans }}</span>
+            </a>
+          </li>
+          {% endif %}
           <li class="nav-item">
             {# cart.twigを呼び出し #}
             {{ include('Block/cart.twig') }}

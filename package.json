@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "install": "composer create-project ec-cube/ec-cube ec-cube \"4.0.x-dev\" --keep-vcs",
-    "server": "cd ec-cube && bin/console server:run"
+    "server": "cd ec-cube && bin/console server:run",
+    "build": "cd ec-cube && yarn build"
   },
   "author": "",
   "license": "ISC"
